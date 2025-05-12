@@ -1,4 +1,4 @@
-//Określa, że urządzenie może być włączane i wyłączane.
+package Interfaces;//Określa, że urządzenie może być włączane i wyłączane.
 
 
 public interface Switchable {

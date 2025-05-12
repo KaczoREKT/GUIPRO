@@ -1,15 +1,23 @@
+package Devices;
+
+import Interfaces.Switchable;
+
 import java.util.UUID;
 
-public class Outlet extends SmartDevice implements Switchable{
+public class Outlet extends SmartDevice implements Switchable {
     private boolean inUse = false;
 
-    public Outlet(UUID deviceID, String deviceName, DeviceStatus currentDeviceStatus, boolean inUse) {
-        super(deviceID, deviceName, currentDeviceStatus);
-        this.inUse = inUse;
+    public Outlet() {
+        super("outlet", DeviceStatus.OFF);
     }
 
     @Override
     public void simulate() {
+
+    }
+
+    @Override
+    public void addCustomStatus() {
 
     }
 
