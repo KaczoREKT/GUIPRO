@@ -1,15 +1,17 @@
-import Devices.SmartDevice;
+package Model;
 
-import java.util.ArrayList;
+import House.House;
+
 import java.util.TreeMap;
 
-public class HouseManager {
+public class HouseModel {
     private TreeMap<String, House> houses = new TreeMap<>();
 
-    public TreeMap<String, House> getHouses() {
+    public TreeMap<String, House> getHousesMap() {
         return houses;
     }
-    public String getHousesNames(){
+
+    public String getHousesNames() {
         return houses.keySet().toString();
     }
 
@@ -21,17 +23,19 @@ public class HouseManager {
         houses.remove(houseName);
     }
 
+    public boolean exists(String name) {
+        return houses.containsKey(name);
+    }
+
+    public House getHouse(String name) {
+        return houses.get(name);
+    }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        if (houses.isEmpty()) {
-            sb.append("Brak zapisanych domów.");
-        } else {
-            for (House house : houses.values()) {
-                sb.append(house).append("\n");
-            }
+        for (House house : houses.values()) {
+            sb.append(house).append("\n");
         }
         return sb.toString();
     }
-
 }

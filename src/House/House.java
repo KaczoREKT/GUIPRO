@@ -1,6 +1,5 @@
-import Devices.SmartDevice;
+package House;
 
-import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;

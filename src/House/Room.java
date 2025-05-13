@@ -1,3 +1,5 @@
+package House;
+
 import Devices.SmartDevice;
 
 import java.util.HashMap;

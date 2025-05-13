@@ -1,3 +1,5 @@
+package Other;
+
 import Devices.SmartDevice;
 
 import java.util.function.Predicate;

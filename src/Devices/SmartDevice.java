@@ -27,10 +27,6 @@ public abstract class SmartDevice {
         return currentDeviceStatus;
     }
 
-    public Set<DeviceStatus> getDeviceStatusSet() {
-        return deviceStatusSet;
-    }
-
     public void setStatus(DeviceStatus status) {
         if (!deviceStatusSet.contains(status)){
             throw new IllegalStateException ("Device cannot be in that state.");
@@ -39,8 +35,10 @@ public abstract class SmartDevice {
         } else{
             throw new IllegalStateException ("Status cannot be the same as current.");
         }
+    }
 
-
+    public Set<DeviceStatus> getDeviceStatusSet() {
+        return deviceStatusSet;
     }
 
     public String getName() {

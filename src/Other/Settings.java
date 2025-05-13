@@ -1,8 +1,5 @@
-import com.sun.source.tree.Tree;
+package Other;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 public class Settings {
