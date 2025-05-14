@@ -56,7 +56,11 @@ public class AppContext {
     // POKOJE
 
     public void addRoomToHouse(String houseName, String roomName, String choice) {
-        House house = houseTreeMap.get(houseName);
+        House house = houseTreeMap.entrySet().stream()
+                .filter(entry -> entry.getKey().equalsIgnoreCase(houseName))
+                .map(Map.Entry::getValue)
+                .findFirst()
+                .orElse(null);
         if (house == null) {
             System.out.println("House not found: " + houseName);
             return;
@@ -108,7 +112,7 @@ public class AppContext {
         StringBuilder sb = new StringBuilder();
         for (House house : houseTreeMap.values()) {
             for (Room room : house.getRooms().values()) {
-                sb.append(room.toString());
+                sb.append(room.toString()).append("\n");
             }
         }
         return sb.toString();

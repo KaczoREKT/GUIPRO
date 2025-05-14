@@ -34,9 +34,9 @@ public class RoomMenu extends AbstractMenu {
                 case "1":
                     System.out.println("=== Which House to add room to? ===");
                     System.out.println(appContext.getHousesNames());
-                    String houseName = scanner.nextLine().toLowerCase();
+                    String houseName = scanner.nextLine();
                     System.out.println("=== Enter room name ===");
-                    String roomName = scanner.nextLine().toLowerCase();
+                    String roomName = scanner.nextLine();
                     System.out.println("=== Choose available room type ===");
                     for (RoomType roomType : RoomType.values()) {
                         System.out.print(roomType + " ");

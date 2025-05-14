@@ -16,6 +16,7 @@ public class DeviceMenu extends AbstractMenu {
     }
 
     public void getMenu() {
+        running = true;
         // Check if rooms exist
         if (!appContext.anyRoomExists()) {
             System.out.println("No Rooms found. Create one.");
@@ -163,6 +164,8 @@ public class DeviceMenu extends AbstractMenu {
             System.out.println("Device status changed to " + chosenStatusString);
         } catch (IllegalStateException e) {
             System.out.println("Invalid operation for device: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid argument.");
         }
     }
 }
