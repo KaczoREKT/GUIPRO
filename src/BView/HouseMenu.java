@@ -1,12 +1,12 @@
 package BView;
 
-import Controller.HouseController;
+import Controller.*;
 
 public class HouseMenu extends AbstractMenu {
-    private HouseController controller;
+    private AppContext appContext;
 
-    public HouseMenu(HouseController controller) {
-        this.controller = controller;
+    public HouseMenu(AppContext appContext) {
+        this.appContext = appContext;
     }
 
     public void getMenu() {
@@ -26,16 +26,16 @@ public class HouseMenu extends AbstractMenu {
                 case "1":
                     System.out.println("=== Enter house name ===");
                     choice = scanner.nextLine();
-                    controller.addHouseToSet(choice);
+                    appContext.addToHouseMap(choice);
                     System.out.println("House added: \n" + choice);
                     break;
 
                 case "2":
                     System.out.println("=== Enter the name of the house to remove ===");
-                    System.out.println(controller.getHousesInfo());
+                    System.out.println(appContext.getHousesInfo());
                     String chosenHouse = scanner.nextLine();
                     System.out.println(
-                            controller.removeHouseFromSet(chosenHouse)
+                            appContext.removeFromHouseMap(chosenHouse)
                                     ? "Deleted: " + chosenHouse
                                     : "House doesn't exist."
                     );
@@ -43,7 +43,7 @@ public class HouseMenu extends AbstractMenu {
 
                 case "3":
                     System.out.println("=== Saved houses: ===\n");
-                    System.out.println(controller.getHousesInfo());
+                    System.out.println(appContext.getHousesInfo());
                     break;
 
                 case "4":

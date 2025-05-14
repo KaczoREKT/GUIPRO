@@ -1,23 +1,21 @@
 package BView;
 
-import Controller.HouseController;
-import Controller.RoomController;
+import Controller.AppContext;
 import House.*;
 
 
 public class RoomMenu extends AbstractMenu {
-    public RoomController roomController;
-    public HouseController houseController;
+    public AppContext appContext;
 
-    public RoomMenu(RoomController roomController, HouseController houseController) {
-        this.roomController = roomController;
-        this.houseController = houseController;
+    public RoomMenu(AppContext appContext) {
+
+        this.appContext = appContext;
     }
 
     public void getMenu() {
         running = true;
 
-        if (houseController.housesExists()) {
+        if (appContext.getHouseMap().isEmpty()) {
             System.out.println("No house found. Create one.");
             return;
         }
@@ -35,7 +33,7 @@ public class RoomMenu extends AbstractMenu {
                 /* Function for adding room to house */
                 case "1":
                     System.out.println("=== Which House to add room to? ===");
-                    System.out.println(houseController.getHousesNames());
+                    System.out.println(appContext.getHousesNames());
                     String houseName = scanner.nextLine().toLowerCase();
                     System.out.println("=== Enter room name ===");
                     String roomName = scanner.nextLine().toLowerCase();
@@ -46,10 +44,8 @@ public class RoomMenu extends AbstractMenu {
                     }
                     choice = scanner.nextLine().trim().toUpperCase();
 
-                    // Add to global model and house
                     try {
-                        houseController.addRoomToHouse(houseName, roomName, choice);
-                        roomController.addRoomToMap(roomName, choice);
+                        appContext.addRoomToHouse(houseName, roomName, choice);
                         System.out.println("Room created: " + choice);
                     } catch (IllegalArgumentException e) {
                         System.out.println("Invalid room type entered. Please try again.");
@@ -59,11 +55,10 @@ public class RoomMenu extends AbstractMenu {
                     /* Function for removing room from house */
                     System.out.println("=== Enter room to remove ===");
 
-                    System.out.println(roomController.getRoomsNames());
+                    System.out.println(appContext.getRoomsNames());
                     choice = scanner.nextLine().toLowerCase();
-                    if (roomController.roomExists(choice)) {
-                        roomController.removeRoom(choice);
-                        houseController.removeRoom(choice);
+                    if (appContext.roomExists(choice)) {
+                        appContext.removeRoom(choice);
                         System.out.println("Room removed.");
                     } else {
                         System.out.println("Room not found.");
@@ -71,7 +66,7 @@ public class RoomMenu extends AbstractMenu {
                     break;
                 /* Function to show saved rooms */
                 case "3":
-                    System.out.println(roomController.getRoomsInfo());
+                    System.out.println(appContext.getRoomsInfo());
                     break;
                 case "4":
                     running = false;

@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class Room {
     private String name;
     private RoomType type;
-    private HashMap<String, SmartDevice> smartDevices = new HashMap<>();
+    private HashMap<String, SmartDevice> deviceMap = new HashMap<>();
 
     public Room(String name, RoomType type) {
         this.name = name;
@@ -15,10 +15,10 @@ public class Room {
     }
 
     public void addDevice(SmartDevice device) {
-        smartDevices.put(device.getName(), device);
+        deviceMap.put(device.getName(), device);
     }
     public void removeDevice(String device) {
-        smartDevices.remove(device);
+        deviceMap.remove(device);
     }
 
     public String getName() {
@@ -26,7 +26,7 @@ public class Room {
     }
     public String getSmartDevicesNames() {
         StringBuilder sb = new StringBuilder();
-        for (SmartDevice smartDevice : smartDevices.values()) {
+        for (SmartDevice smartDevice : deviceMap.values()) {
             sb.append(smartDevice.toString()).append(" ");
         }
         return sb.toString();
@@ -36,8 +36,8 @@ public class Room {
         return type;
     }
 
-    public HashMap<String, SmartDevice> getSmartDevices() {
-        return smartDevices;
+    public HashMap<String, SmartDevice> getDeviceMap() {
+        return deviceMap;
     }
 
     @Override
@@ -46,6 +46,6 @@ public class Room {
     }
 
     public boolean hasDevice(String deviceName) {
-        return smartDevices.containsKey(deviceName);
+        return deviceMap.containsKey(deviceName);
     }
 }
