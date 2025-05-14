@@ -44,4 +44,8 @@ public class Room {
     public String toString() {
         return "Name: " + name + " Type: " + type;
     }
+
+    public boolean hasDevice(String deviceName) {
+        return smartDevices.containsKey(deviceName);
+    }
 }

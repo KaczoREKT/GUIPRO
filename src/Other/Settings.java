@@ -7,7 +7,7 @@ public class Settings {
     public static TreeMap<String, Boolean> settings = new TreeMap<>();
 
     static {
-        settings.put("geoLokacja", true);
+        settings.put("geoLocation", true);
     }
 
     public static void set(String key, boolean value) {

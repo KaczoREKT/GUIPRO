@@ -1,13 +1,13 @@
 import Controller.DeviceController;
 import Controller.HouseController;
 import Controller.RoomController;
-import Model.DeviceModel;
-import Model.HouseModel;
-import Model.RoomModel;
-import View.DeviceMenu;
-import View.HouseMenu;
-import View.MainMenu;
-import View.RoomMenu;
+import AModel.DeviceModel;
+import AModel.HouseModel;
+import AModel.RoomModel;
+import BView.DeviceMenu;
+import BView.HouseMenu;
+import BView.MainMenu;
+import BView.RoomMenu;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,11 +19,11 @@ public class Main {
         // Controller
         DeviceController deviceController = new DeviceController(deviceModel, houseModel, roomModel);
         HouseController houseController = new HouseController(houseModel);
-        RoomController roomController = new RoomController(roomModel);
+        RoomController roomController = new RoomController(roomModel, houseModel);
 
         // View
-        DeviceMenu deviceMenu = new DeviceMenu(deviceController);
-        RoomMenu roomMenu = new RoomMenu(roomController);
+        DeviceMenu deviceMenu = new DeviceMenu(deviceController, houseController, roomController);
+        RoomMenu roomMenu = new RoomMenu(roomController, houseController);
         HouseMenu houseMenu = new HouseMenu(houseController);
 
         // MainView

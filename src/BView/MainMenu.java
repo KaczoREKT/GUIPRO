@@ -1,12 +1,4 @@
-package View;
-
-import Controller.DeviceController;
-import Controller.HouseController;
-import Controller.RoomController;
-import House.Room;
-import Model.DeviceModel;
-import Model.HouseModel;
-import Model.RoomModel;
+package BView;
 
 public class MainMenu extends AbstractMenu {
     HouseMenu houseMenu;
@@ -17,10 +9,11 @@ public class MainMenu extends AbstractMenu {
         this.houseMenu = houseMenu;
         this.roomMenu = roomMenu;
         this.deviceMenu = deviceMenu;
+        System.out.println("Utworzono Main");
     }
 
     public void getMenu() {
-        boolean running = true;
+        running = true;
 
         while (running) {
             System.out.println("=== MAIN MENU ===");
@@ -46,13 +39,10 @@ public class MainMenu extends AbstractMenu {
                     deviceMenu.getMenu();
                     break;
                 case "4":
-
                     break;
                 case "5":
-
                     break;
                 case "6":
-
                     break;
                 case "7":
                     running = false;

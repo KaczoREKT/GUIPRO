@@ -1,7 +1,8 @@
-package Model;
+package AModel;
 
-import House.House;
+import House.*;
 
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class HouseModel {
@@ -27,15 +28,42 @@ public class HouseModel {
         return houses.containsKey(name);
     }
 
+
+
     public House getHouse(String name) {
         return houses.get(name);
+    }
+
+    public String getHousesInfo() {
+        if (houses.isEmpty()) {
+            return "No houses found.";
+        }
+        StringBuilder housesString = new StringBuilder("=== List of Houses ===\n");
+        for (House house : houses.values()) {
+            housesString.append(house).append("\n");
+        }
+
+        return housesString.toString();
     }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (House house : houses.values()) {
-            sb.append(house).append("\n");
+            sb.append(house.toString()).append("\n");
         }
         return sb.toString();
+    }
+
+
+    public boolean isHousesEmpty() {
+        return houses.isEmpty();
+    }
+
+    public ArrayList<Room> getRooms() {
+        ArrayList<Room> rooms = new ArrayList<>();
+        for (House house : houses.values()){
+            rooms.addAll(house.getRooms().values());
+        }
+        return rooms;
     }
 }

@@ -2,14 +2,14 @@ package Controller;
 
 import Devices.*;
 import House.*;
-import Model.DeviceModel;
-import Model.HouseModel;
-import Model.RoomModel;
+import AModel.DeviceModel;
+import AModel.HouseModel;
+import AModel.RoomModel;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class DeviceController {
+public class DeviceController extends AbstractController{
     private DeviceModel deviceModel;
     private HouseModel houseModel;
     private RoomModel roomModel;
@@ -21,6 +21,7 @@ public class DeviceController {
     }
 
     public Set<String> getAvailableDevices() {
+
         return Set.of("Heater", "LightBulb", "Outlet", "TemperatureSensor");
     }
 
@@ -34,8 +35,9 @@ public class DeviceController {
         };
     }
 
-    public void removeDeviceFromRoom(Room room, String deviceName) {
-        room.removeDevice(deviceName);
+    public void removeDevice(String deviceName) {
+        roomModel.removeDevice(deviceName);
+        deviceModel.removeDevice(deviceName);
     }
 
     public SmartDevice getDevice(Room room, String deviceName) {
@@ -54,12 +56,9 @@ public class DeviceController {
         return device.getStatus();
     }
 
-    public Set<RoomType> getRoomTypes() {
-        return houseModel.getRoomTypes();
-    }
 
     public Set<DeviceStatus> getAllStatusesForRoomType(RoomType type) {
-        return roomModel.getRooms().values().stream()
+        return roomModel.getRoomsMap().values().stream()
                 .filter(room -> room.getType() == type)
                 .flatMap(room -> room.getSmartDevices().values().stream())
                 .flatMap(device -> device.getDeviceStatusSet().stream())
@@ -67,16 +66,15 @@ public class DeviceController {
     }
 
     public void setStatusForDevicesInRoomType(RoomType type, DeviceStatus status) {
-        houseModel.getRooms().values().stream()
-                .filter(room -> room.getType() == type)
-                .forEach(room -> room.getSmartDevices().values()
-                        .forEach(device -> device.setStatus(status)));
+        deviceModel.setStatusForDevicesInRoomType(type, status);
     }
 
     public TreeMap<String, House> getHousesMap() {
+        return houseModel.getHousesMap();
     }
 
     public TreeMap<String, Room> getRoomsMap() {
+        return roomModel.getRoomsMap();
     }
 
     public void addToDevicesMap(String deviceName) {
@@ -90,9 +88,19 @@ public class DeviceController {
         deviceModel.addDevice(deviceName, newDevice);
     }
 
-    public boolean getAllRoomsNames() {
+    public String getAllRoomsNames() {
+        return roomModel.getRoomsNames();
     }
 
     public boolean deviceExists(String choice) {
+        return getDevicesNames().contains(choice);
+    }
+
+    public String getDevicesNames() {
+        return deviceModel.getDevicesNames();
+    }
+
+    public TreeMap<String, SmartDevice> getDevicesMap() {
+        return deviceModel.getDevicesMap();
     }
 }
